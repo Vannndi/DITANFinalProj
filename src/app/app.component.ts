@@ -1,4 +1,5 @@
-import { Component, Renderer2 } from '@angular/core'; // Add Renderer2
+import { Component, Renderer2 } from '@angular/core';
+import { BackEndService } from './back-end.service';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +8,27 @@ import { Component, Renderer2 } from '@angular/core'; // Add Renderer2
 })
 export class AppComponent {
   title = 'crud';
-  darkMode = false; // Add this line
+  darkMode = false;
 
-  constructor(private renderer: Renderer2) { // Modify this line
+  constructor(private renderer: Renderer2, private backEndService: BackEndService) {
     // Start in light mode
     this.renderer.addClass(document.body, 'light-mode');
   }
 
-  toggleDarkMode() { // Add this function
+  ngOnInit(): void {
+    this.backEndService.fetchDarkMode().subscribe((data) => {
+      this.darkMode = data.darkMode;
+      this.updateDarkMode();
+    });
+  }
+
+  toggleDarkMode() {
     this.darkMode = !this.darkMode;
+    this.updateDarkMode();
+    this.backEndService.saveDarkMode(this.darkMode);
+  }
+
+  updateDarkMode() {
     if (this.darkMode) {
       this.renderer.removeClass(document.body, 'light-mode');
       this.renderer.addClass(document.body, 'dark-mode');
