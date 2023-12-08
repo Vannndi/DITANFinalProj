@@ -2,7 +2,6 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Post } from "./post.model";
 import { HttpClient } from '@angular/common/http';
 
-
 @Injectable({ providedIn: 'root' })
 export class PostService {
   constructor(private http: HttpClient) { }
@@ -35,39 +34,35 @@ export class PostService {
   getPost() {
     return this.listOfPosts;
   }
-  
+
   deleteButton(index: number) {
     this.listOfPosts.splice(index, 1)
   }
   addPost(post: Post) {
     this.listOfPosts.push(post);
-    
   }
   updatePost(index: number, post: Post) {
     this.listOfPosts[index] = post;
   }
   getSpecPost(index: number) {
     return this.listOfPosts[index];
-  } 
+  }
   likePost(index: number) {
     this.listOfPosts[index].numberOfLikes++;
-
-    
-    this.http.put(`https://cc105-affec-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, this.listOfPosts[index])
+    this.http.put(`https://finalsproject-f4674-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, this.listOfPosts[index])
     .subscribe(() => {
       console.log('Post updated in Firebase');
     });
-  
-
-
   }
+
   addComment(index: number, comment: string) {
     this.listOfPosts[index].comments.push(comment);
-    this.http.put(`https://cc105-affec-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, this.listOfPosts[index])
+    this.http.put(`https://finalsproject-f4674-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${index}.json`, this.listOfPosts[index])
       .subscribe(() => {
         console.log('Comment updated in Firebase');
       });
   }
+
   getComments(index: number) {
     return this.listOfPosts[index].comments;
   }

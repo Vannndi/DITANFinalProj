@@ -11,17 +11,22 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from './environment';
 
 const routes: Routes = [
-  
-    { path: '', redirectTo: 'post-list', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
     { path: 'post-list', component: PostListComponent },
     { path: 'post-add', component: PostEditComponent },
-    { path: 'settings', component: SettingsComponent }, // New route for SettingsComponent
+    { path: 'settings', component: SettingsComponent },
     { path: 'authentication', component: AuthComponent },
     { path: 'post-edit/:index', component: PostEditComponent },
-
+    { path: 'signup', component: SignUpComponent },
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,15 +35,17 @@ const routes: Routes = [
     PostComponent,
     PostListComponent,
     PostEditComponent,
-    SettingsComponent
-    
+    SettingsComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

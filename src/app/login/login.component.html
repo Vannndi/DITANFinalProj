@@ -1,0 +1,18 @@
+<p>login works!</p>
+<div class="login-background">
+  <div class="container">
+      <div class="login form">
+          <header>Login</header>
+          <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+              <input type="text" placeholder="Enter your email" name="email" ngModel required>
+              <input type="password" placeholder="Enter your password" name="password" ngModel required>
+              <input type="submit" class="button" value="Login">
+          </form>
+          <div class="signup">
+              <span class="signup">Don't have an account?
+                <a routerLink="/signup">Sign Up</a>
+              </span>
+          </div>
+      </div>
+  </div>
+</div>
