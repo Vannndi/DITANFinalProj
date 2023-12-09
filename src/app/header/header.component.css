@@ -23,5 +23,14 @@ navbar-brand, .nav-link:hover {
 }
 
 
+nav{
+  height: 40px;
+  background-color: rgb(234, 18, 18);
+  position: fixed; /* Add this line */
+  width: 100%; /* Add this line */
+  top: 0; /* Add this line */
+  z-index: 100; /* Add this line */
+}
+
 
 
