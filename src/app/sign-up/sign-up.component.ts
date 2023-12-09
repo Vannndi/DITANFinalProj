@@ -34,6 +34,11 @@ export class SignUpComponent implements OnInit {
     console.log('onSubmit called');  // New log statement
   
     if (this.signUpForm.valid) {
+      if (this.signUpForm.controls['password'].value !== this.signUpForm.controls['confirmPassword'].value) {
+        window.alert('Password and Confirm Password must be the same.');
+        return;
+      }
+  
       console.log('Form is valid');  // New log statement
   
       const email = this.signUpForm.value.email;

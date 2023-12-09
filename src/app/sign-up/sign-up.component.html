@@ -15,6 +15,9 @@
         <div *ngIf="signUpForm.controls['confirmPassword'].invalid && signUpForm.controls['confirmPassword'].touched">
           Please confirm your password.
         </div>
+        <div *ngIf="signUpForm.controls['password'].value !== signUpForm.controls['confirmPassword'].value && signUpForm.controls['confirmPassword'].touched">
+          Password and Confirm Password must be the same.
+        </div>
         <input type="submit" class="button" value="Sign Up">
       </form>
       <div class="signup">

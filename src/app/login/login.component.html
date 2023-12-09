@@ -1,18 +1,23 @@
-<p>login works!</p>
 <div class="login-background">
   <div class="container">
-      <div class="login form">
-          <header>Login</header>
-          <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-              <input type="text" placeholder="Enter your email" name="email" ngModel required>
-              <input type="password" placeholder="Enter your password" name="password" ngModel required>
-              <input type="submit" class="button" value="Login">
-          </form>
-          <div class="signup">
-              <span class="signup">Don't have an account?
-                <a routerLink="/signup">Sign Up</a>
-              </span>
-          </div>
+    <div class="login form">
+      <header>Login</header>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Enter your email" formControlName="email">
+        <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+          Please enter a valid email.
+        </div>
+        <input type="password" placeholder="Enter your password" formControlName="password">
+        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+          Please enter a password.
+        </div>
+        <input type="submit" class="button" value="Login">
+      </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+          <a routerLink="/signup">Sign Up</a>
+        </span>
       </div>
+    </div>
   </div>
 </div>
