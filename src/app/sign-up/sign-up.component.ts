@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +10,10 @@ import { AuthService } from '../auth.service';
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private afAuth: AngularFireAuth
+  ) { }
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
@@ -24,23 +27,36 @@ export class SignUpComponent implements OnInit {
     let pass = group.get('password')?.value;
     let confirmPass = group.get('confirmPassword')?.value;
 
-    return pass === confirmPass ? null : { notSame: true }     
+    return pass === confirmPass ? null : { notSame: true }
   }
 
   onSubmit() {
+    console.log('onSubmit called');  // New log statement
+  
     if (this.signUpForm.valid) {
-      this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password)
-        .then((res: any) => {
+      console.log('Form is valid');  // New log statement
+  
+      const email = this.signUpForm.value.email;
+      const password = this.signUpForm.value.password;
+  
+      this.afAuth.createUserWithEmailAndPassword(email, password)
+        .then(res => {
           console.log('User registered successfully!', res);
-          // Navigate to another route or do something else
+          // Show a success message
+          window.alert('You have successfully signed up!');
+          // Clear the form inputs
+          this.signUpForm.reset();
         })
-        .catch((error: any) => {
+        .catch(error => {
           console.error('There was an error while registering the user', error);
-          alert('There was an error while registering the user');
+          // Show an error message
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('The email address is already in use by another account.');
+            window.alert('The email address is already in use by another account.');
+          }
         });
     } else {
-      // Show an error message
-      alert('Please enter email and password');
+      console.log('Form is invalid');  // New log statement
     }
   }
 }

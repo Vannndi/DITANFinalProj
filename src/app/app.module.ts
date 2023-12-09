@@ -14,6 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AuthModule } from '@angular/fire/auth';
 import { environment } from './environment';
 
 const routes: Routes = [
@@ -45,7 +46,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebase),
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -58,12 +58,17 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "crud:build",
+            "hmr": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "crud:build:production"
             },
             "development": {
-              "browserTarget": "crud:build:development"
+              "browserTarget": "crud:build:development",
+              "hmr": true
             }
           },
           "defaultConfiguration": "development"
