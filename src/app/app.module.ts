@@ -16,6 +16,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthModule } from '@angular/fire/auth';
 import { environment } from './environment';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -47,7 +48,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AuthModule
+    AuthModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

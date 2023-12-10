@@ -1,5 +1,10 @@
 <app-post
-  *ngFor="let post of listOfPosts; let i = index"
+  *ngFor="let post of listOfPosts | paginate: { itemsPerPage: 5, currentPage: p }; let i = index"
   [post]="post"
   [index]="i"
 ></app-post>
+<br>
+<!-- Only display pagination controls if listOfPosts array has items -->
+<div *ngIf="listOfPosts.length > 0">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

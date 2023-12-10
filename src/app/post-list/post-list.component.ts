@@ -10,6 +10,7 @@ import { BackEndService } from '../back-end.service';
 })
 export class PostListComponent implements OnInit {
   listOfPosts: Post[] = [];
+  p: number = 1;
 
   constructor(
     private postService: PostService,
