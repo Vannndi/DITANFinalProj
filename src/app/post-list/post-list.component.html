@@ -5,6 +5,7 @@
 ></app-post>
 <br>
 <!-- Only display pagination controls if listOfPosts array has items -->
+<!-- Only display pagination controls if listOfPosts array has items -->
 <div *ngIf="listOfPosts.length > 0">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
