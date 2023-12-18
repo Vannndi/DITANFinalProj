@@ -17,16 +17,17 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AuthModule } from '@angular/fire/auth';
 import { environment } from './environment';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from './auth.guard'; // Make sure to import your AuthGuard
 
 const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: 'post-list', component: PostListComponent },
-    { path: 'post-add', component: PostEditComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: 'authentication', component: AuthComponent },
-    { path: 'post-edit/:index', component: PostEditComponent },
-    { path: 'signup', component: SignUpComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
+  { path: 'post-add', component: PostEditComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'authentication', component: AuthComponent, canActivate: [AuthGuard] },
+  { path: 'post-edit/:index', component: PostEditComponent, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignUpComponent }, // Removed AuthGuard from this route
 ]
 
 @NgModule({

@@ -1,8 +1,13 @@
+<body>
 <div class="login-background">
   <div class="container">
     <div class="login form">
-      <header>Sign Up</header>
+      <header>Create Account</header>
       <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Enter your username" formControlName="username">
+        <div *ngIf="signUpForm.controls['username'].invalid && signUpForm.controls['username'].touched">
+          Please enter a username.
+        </div>
         <input type="text" placeholder="Enter your email" formControlName="email">
         <div *ngIf="signUpForm.controls['email'].invalid && signUpForm.controls['email'].touched">
           Please enter a valid email.
@@ -27,3 +32,4 @@
     </div>
   </div>
 </div>
+</body>

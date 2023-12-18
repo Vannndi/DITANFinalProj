@@ -1,7 +1,6 @@
 <br />
 <br /><br />
-<br /><br />
-<br />
+<br /><div class="post-box">
 <h3>{{ post?.title }}</h3>
 <img class="img-responsive" src="{{ post?.imgPath }}" />
 <p>
@@ -28,8 +27,10 @@
 <br />
 <br />
 
-<button class="btn btn-primary" (click)="onEdit()">edit</button> -
-<button class="btn btn-danger" (click)="delete()">delete</button>
+
+
+<button class="btn btn-primary" (click)="onEdit()">Edit</button> -
+<button class="btn btn-danger" (click)="delete()">Delete</button>
 <br />
 <br />
 <form (ngSubmit)="onAddComment(commentInput.value)">
@@ -41,5 +42,7 @@
 
   <br /><button type="submit" class="btn btn-success">Add Comment</button>
 </form>
+
+</div>
 
 <hr />

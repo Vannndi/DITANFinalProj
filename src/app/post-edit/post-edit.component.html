@@ -1,3 +1,6 @@
+
+<br><br><br><br>
+<div class="post-box">
 <h3 class="font-weight-bold" *ngIf="editMode == false">Create Post</h3>
 <h3 class="font-weight-bold" *ngIf="editMode == true">Edit Post</h3>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -29,7 +32,7 @@
       formControlName="description"
     ></textarea>
   </div>
-
+<br>
   <button
     type="submit"
     class="btn btn-primary font-weight-bold"
@@ -41,3 +44,5 @@
   <button type="reset" class="btn btn-danger font-weight-bold">Clear</button>
 </form>
 <hr />
+
+</div>

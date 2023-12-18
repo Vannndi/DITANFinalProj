@@ -1,7 +1,9 @@
+
+<body>
 <div class="login-background">
   <div class="container">
     <div class="login form">
-      <header>Login</header>
+      <header>User login</header>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <input type="text" placeholder="Enter your email" formControlName="email">
         <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
@@ -21,3 +23,4 @@
     </div>
   </div>
 </div>
+</body>

@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
+  profilePictureUrl: string | ArrayBuffer | null = null;
+  username: string = '';
   darkMode = false;
 
   constructor(private renderer: Renderer2, private backEndService: BackEndService, private afAuth: AngularFireAuth, private router: Router) {
+    this.username = localStorage.getItem('username') || '';
     // Start in light mode
     this.renderer.addClass(document.body, 'light-mode');
+    
   }
 
   ngOnInit(): void {
@@ -40,4 +44,20 @@ export class SettingsComponent {
       this.router.navigate(['/login']);  // Redirect to the login page
     });
   }
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files;
+    if (file && file.length > 0) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.profilePictureUrl = reader.result;
+      };
+      reader.readAsDataURL(file[0]);
+    }
+  }
+
+
+onSubmit() {
+  console.log('Form submitted');
+  // Add your form submission logic here
+}
 }

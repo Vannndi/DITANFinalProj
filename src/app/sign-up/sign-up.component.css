@@ -1,12 +1,8 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to right, #2980b9, #6dd5fa);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  
 }
 
 .container {

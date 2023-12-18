@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .post-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .post-title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .post-content {
+    margin-top: 10px;
+  }

@@ -17,6 +17,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
@@ -40,13 +41,16 @@ export class SignUpComponent implements OnInit {
       }
   
       console.log('Form is valid');  // New log statement
-  
+      
+      const username = this.signUpForm.value.username;
       const email = this.signUpForm.value.email;
       const password = this.signUpForm.value.password;
   
       this.afAuth.createUserWithEmailAndPassword(email, password)
         .then(res => {
           console.log('User registered successfully!', res);
+          // Store the username
+          localStorage.setItem('username', username);
           // Show a success message
           window.alert('You have successfully signed up!');
           // Clear the form inputs
